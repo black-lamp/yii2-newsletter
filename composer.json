@@ -1,0 +1,27 @@
+{
+    "name": "black-lamp/yii2-newsletter",
+    "description": "Module for subscribe on newsletter",
+    "keywords": ["yii2", "subscribe", "newsletter", "delivery"],
+    "type": "yii2-extension",
+    "license": "GNU Public License",
+    "support": {
+        "source": "https://github.com/black-lamp/yii2-newsletter",
+        "issues": "https://github.com/black-lamp/yii2-newsletter/issues"
+    },
+    "require": {
+        "yiisoft/yii2": ">=2.0.4",
+        "yiisoft/yii2-bootstrap": "*"
+    },
+    "authors": [
+        {
+            "name": "Vladimir Kuprienko",
+            "email": "vldmr.kuprienko@gmail.com",
+            "role": "Creator of extension"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "bl\\newsletter\\": ""
+        }
+    }
+}

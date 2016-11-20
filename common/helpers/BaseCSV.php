@@ -1,5 +1,5 @@
 <?php
-namespace bl\newsletter\helpers;
+namespace bl\newsletter\common\helpers;
 
 use yii;
 use yii\db\ActiveRecord;

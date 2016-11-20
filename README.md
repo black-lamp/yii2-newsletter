@@ -21,12 +21,22 @@ to the require section of your composer.json.
 ```
 yii migrate --migrationPath=@vendor/black-lamp/yii2-newsletter/migrations
 ```
-#### Add module to application config
+#### Add modules to application config
+Frontend module for subscriptions
 ```php
 'modules' => [
      // ...
      'newsletter' => [
-         'class' => bl\newsletter\Newsletter::className()
-     ]
+         'class' => bl\newsletter\frontend\Newsletter::className()
+     ],
+]
+```
+Backend module for control of list of the clients
+```php
+'modules' => [
+     // ...
+     'newsletter' => [
+         'class' => bl\newsletter\backend\Newsletter::className()
+     ],
 ]
 ```

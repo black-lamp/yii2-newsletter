@@ -1,10 +1,10 @@
 <?php
-namespace bl\newsletter\entities;
+namespace bl\newsletter\common\entities;
 
-use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
+use yii\behaviors\TimestampBehavior;
 
-use bl\newsletter\helpers\CSV;
+use bl\newsletter\common\helpers\CSV;
 
 /**
  * This is the model class for table "newsletter_client".

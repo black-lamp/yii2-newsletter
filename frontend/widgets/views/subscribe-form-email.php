@@ -3,7 +3,7 @@ use yii\helpers\Html;
 use yii\bootstrap\BootstrapAsset;
 use yii\bootstrap\ActiveForm;
 
-use bl\newsletter\entities\Client;
+use bl\newsletter\common\entities\Client;
 
 /**
  * @author Vladimir Kuprienko <vldmr.kuprienko@gmail.com>
@@ -17,7 +17,7 @@ BootstrapAsset::register($this);
 ?>
 
 <?php
-$action_route = $moduleId . '/frontend/subscribe-email';
+$action_route = $moduleId . '/default/subscribe-email';
 $form = ActiveForm::begin([
     'action' => [$action_route],
     'options' => ['class' => 'form-inline'],

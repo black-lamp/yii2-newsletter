@@ -1,9 +1,9 @@
 <?php
-namespace bl\newsletter\widgets;
+namespace bl\newsletter\frontend\widgets;
 
 use yii\base\Widget;
 
-use bl\newsletter\entities\Client;
+use bl\newsletter\common\entities\Client;
 
 /**
  * Widget for rendering of form for subscribe

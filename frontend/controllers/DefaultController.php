@@ -1,5 +1,5 @@
 <?php
-namespace bl\newsletter\controllers;
+namespace bl\newsletter\frontend\controllers;
 
 use yii;
 use yii\web\Controller;
@@ -7,15 +7,15 @@ use yii\web\Response;
 use yii\base\Exception;
 use yii\web\NotFoundHttpException;
 
-use bl\newsletter\Newsletter;
-use bl\newsletter\entities\Client;
+use bl\newsletter\frontend\Newsletter;
+use bl\newsletter\common\entities\Client;
 
 /**
- * Frontend controller for the `newsletter` module
+ * Default controller for the `newsletter` module
  *
  * @author Vladimir Kuprienko <vldmr.kuprienko@gmail.com>
  */
-class FrontendController extends Controller
+class DefaultController extends Controller
 {
     /**
      * Subscribe on newsletter by email

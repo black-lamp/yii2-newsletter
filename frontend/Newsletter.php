@@ -1,5 +1,5 @@
 <?php
-namespace bl\newsletter;
+namespace bl\newsletter\frontend;
 
 use yii;
 use yii\base\Module;
@@ -14,12 +14,7 @@ class Newsletter extends Module
     /**
      * @inheritdoc
      */
-    public $controllerNamespace = 'bl\newsletter\controllers';
-
-    /**
-     * @inheritdoc
-     */
-    public $defaultRoute = 'backend';
+    public $controllerNamespace = 'bl\newsletter\frontend\controllers';
 
     public static function t($category, $message, $params = [], $language = null)
     {

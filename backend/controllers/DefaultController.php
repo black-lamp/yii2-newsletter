@@ -1,20 +1,20 @@
 <?php
-namespace bl\newsletter\controllers;
+namespace bl\newsletter\backend\controllers;
 
 use yii;
 use yii\data\Pagination;
 use yii\web\Controller;
 use yii\web\Response;
 
-use bl\newsletter\entities\Client;
-use bl\newsletter\helpers\CSV;
+use bl\newsletter\common\entities\Client;
+use bl\newsletter\common\helpers\CSV;
 
 /**
- * Backend controller for the `newsletter` module
+ * Default controller for the `newsletter` module
  *
  * @author Vladimir Kuprienko <vldmr.kuprienko@gmail.com>
  */
-class BackendController extends Controller
+class DefaultController extends Controller
 {
     /**
      * @inheritdoc

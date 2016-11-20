@@ -5,8 +5,8 @@ use yii\bootstrap\BootstrapAsset;
 use yii\data\Pagination;
 use yii\widgets\LinkPager;
 
-use bl\newsletter\entities\Client;
-use bl\newsletter\Newsletter;
+use bl\newsletter\common\entities\Client;
+use bl\newsletter\backend\Newsletter;
 
 /**
  * @author Vladimir Kuprienko <vldmr.kuprienko@gmail.com>

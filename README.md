@@ -14,12 +14,12 @@ composer require black-lamp/yii2-newsletter
 ```
 or add
 ```json
-"black-lamp/yii2-newsletter": "1.*.*"
+"black-lamp/yii2-newsletter": "2.*.*"
 ```
 to the require section of your composer.json.
 #### Applying migrations
 ```
-yii migrate --migrationPath=@vendor/black-lamp/yii2-newsletter/migrations
+yii migrate --migrationPath=@vendor/black-lamp/yii2-newsletter/common/migrations
 ```
 #### Add modules to application config
 Frontend module for subscriptions

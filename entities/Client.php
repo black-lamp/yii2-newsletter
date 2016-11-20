@@ -15,6 +15,7 @@ use bl\newsletter\helpers\CSV;
  * @property string $email
  * @property integer $phone
  * @property integer $created_at
+ * @property integer $updated_at
  */
 class Client extends ActiveRecord
 {

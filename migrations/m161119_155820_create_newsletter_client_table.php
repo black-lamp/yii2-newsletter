@@ -17,7 +17,8 @@ class m161119_155820_create_newsletter_client_table extends Migration
             'id' => $this->primaryKey(),
             'email' => $this->string(256),
             'phone' => $this->integer(),
-            'created_at' => $this->integer()
+            'created_at' => $this->integer(),
+            'updated_at' => $this->integer()
         ]);
     }
 

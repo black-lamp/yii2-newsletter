@@ -28,23 +28,25 @@ class Subscribe extends Widget
     /**
      * @var integer Type of form for subscribe
      */
-    public $subscribeType = self::SUBSCRIBE_TYPE_DEFAULT;
+    public $subscribeType = self::SUBSCRIBE_TYPE_EMAIL;
 
     /**
      * @inheritdoc
      */
     public function run()
     {
-        // TODO: add `email-subscribe-form` and `phone-subscribe-form`
-        $view_name = 'subscribe-form';
+        // TODO: add `subscribe-form` and `phone-subscribe-form`
+        $view_name = 'subscribe-form-email';
 
         switch ($this->subscribeType) {
             case self::SUBSCRIBE_TYPE_EMAIL:
-                $view_name = 'email-subscribe-form';
+                $view_name = 'subscribe-form-email';
                 break;
             case self::SUBSCRIBE_TYPE_PHONE:
-                $view_name = 'phone-subscribe-form';
+                $view_name = 'subscribe-form-phone';
                 break;
+            default:
+                $view_name = 'subscribe-form';
         }
 
         return $this->render($view_name, [

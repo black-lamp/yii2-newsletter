@@ -11,13 +11,13 @@ use bl\newsletter\common\entities\Client;
  * @var \yii\web\View $this
  * @var string $moduleId
  * @var Client $model
+ * @var string $action_route
  */
 
 BootstrapAsset::register($this);
 ?>
 
 <?php
-$action_route = $moduleId . '/default/subscribe-email';
 $form = ActiveForm::begin([
     'action' => [$action_route],
     'options' => ['class' => 'form-inline'],

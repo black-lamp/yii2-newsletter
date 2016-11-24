@@ -3,6 +3,7 @@ namespace bl\newsletter\frontend\widgets;
 
 use yii\base\Widget;
 
+use bl\newsletter\frontend\Newsletter;
 use bl\newsletter\common\entities\Client;
 
 /**
@@ -21,7 +22,8 @@ class Subscribe extends Widget
     const SUBSCRIBE_TYPE_PHONE = 2;
 
     /**
-     * @var string Id of `Newsletter` module
+     * @var string Id of frontend `Newsletter` module
+     * @see Newsletter
      */
     public $moduleId = 'newsletter';
 
@@ -37,10 +39,12 @@ class Subscribe extends Widget
     {
         // TODO: add `subscribe-form` and `phone-subscribe-form`
         $view_name = 'subscribe-form-email';
+        $action_route = '/' . $this->moduleId;
 
         switch ($this->subscribeType) {
             case self::SUBSCRIBE_TYPE_EMAIL:
                 $view_name = 'subscribe-form-email';
+                $action_route .= '/default/subscribe-email';
                 break;
             case self::SUBSCRIBE_TYPE_PHONE:
                 $view_name = 'subscribe-form-phone';
@@ -50,8 +54,8 @@ class Subscribe extends Widget
         }
 
         return $this->render($view_name, [
-            'moduleId' => $this->moduleId,
-            'model' => new Client()
+            'model' => new Client(),
+            'action_route' => $action_route
         ]);
     }
 }

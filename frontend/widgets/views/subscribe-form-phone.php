@@ -1,7 +1,6 @@
 <?php
 use yii\helpers\Html;
-use yii\bootstrap\BootstrapAsset;
-use yii\bootstrap\ActiveForm;
+use yii\widgets\ActiveForm;
 
 /**
  * View file for Subscribe widget
@@ -15,8 +14,6 @@ use yii\bootstrap\ActiveForm;
  * @license BSD 3-Clause License
  * @author Vladimir Kuprienko <vldmr.kuprienko@gmail.com>
  */
-
-BootstrapAsset::register($this);
 ?>
 
 <?php
@@ -26,8 +23,8 @@ $form = ActiveForm::begin([
     'enableClientValidation' => false
 ])
 ?>
-    <?= $form->field($model, 'email')
-            ->textInput()
-            ->label(false) ?>
+    <?= $form->field($model, 'phone')
+        ->textInput()
+        ->label(false) ?>
     <?= Html::submitButton('Subscribe', ['class' => 'btn btn-success']) ?>
 <?php $form->end() ?>

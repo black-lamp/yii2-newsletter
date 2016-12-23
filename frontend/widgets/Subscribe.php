@@ -1,18 +1,24 @@
 <?php
+/**
+ * @link https://github.com/black-lamp/yii2-newsletter
+ * @copyright Copyright (c) Vladimir Kuprienko
+ * @license BSD 3-Clause License
+ */
+
 namespace bl\newsletter\frontend\widgets;
 
 use yii\base\Widget;
 
-use bl\newsletter\frontend\Newsletter;
+use bl\newsletter\frontend\Module as Newsletter;
 use bl\newsletter\common\entities\Client;
 
 /**
  * Widget for rendering of form for subscribe
  *
- * @author Vladimir Kuprienko <vldmr.kuprienko@gmail.com>
- *
  * @property string $moduleId
  * @property integer $subscribeType
+ *
+ * @author Vladimir Kuprienko <vldmr.kuprienko@gmail.com>
  */
 class Subscribe extends Widget
 {
@@ -21,41 +27,40 @@ class Subscribe extends Widget
     const SUBSCRIBE_TYPE_EMAIL = 1;
     const SUBSCRIBE_TYPE_PHONE = 2;
 
+
     /**
      * @var string Id of frontend `Newsletter` module
      * @see Newsletter
      */
     public $moduleId = 'newsletter';
-
     /**
      * @var integer Type of form for subscribe
      */
     public $subscribeType = self::SUBSCRIBE_TYPE_EMAIL;
+
 
     /**
      * @inheritdoc
      */
     public function run()
     {
-        // TODO: add `subscribe-form` and `phone-subscribe-form`
-        $view_name = 'subscribe-form-email';
-        $action_route = '/' . $this->moduleId;
+        $viewName = 'subscribe-form-email';
+        $actionRoute = '/' . $this->moduleId . '/default';
 
         switch ($this->subscribeType) {
             case self::SUBSCRIBE_TYPE_EMAIL:
-                $view_name = 'subscribe-form-email';
-                $action_route .= '/default/subscribe-email';
+                $viewName = 'subscribe-form-email';
                 break;
             case self::SUBSCRIBE_TYPE_PHONE:
-                $view_name = 'subscribe-form-phone';
+                $viewName = 'subscribe-form-phone';
                 break;
             default:
-                $view_name = 'subscribe-form';
+                $viewName = 'subscribe-form';
         }
 
-        return $this->render($view_name, [
+        return $this->render($viewName, [
             'model' => new Client(),
-            'action_route' => $action_route
+            'actionRoute' => $actionRoute
         ]);
     }
 }

@@ -1,6 +1,13 @@
 <?php
+/**
+ * @link https://github.com/black-lamp/yii2-newsletter
+ * @copyright Copyright (c) Vladimir Kuprienko
+ * @license BSD 3-Clause License
+ */
+
 namespace bl\newsletter\common\entities;
 
+use Yii;
 use yii\db\ActiveRecord;
 use yii\behaviors\TimestampBehavior;
 
@@ -9,19 +16,23 @@ use bl\newsletter\common\helpers\CSV;
 /**
  * This is the model class for table "newsletter_client".
  *
- * @author Vladimir Kuprienko <vldmr.kuprienko@gmail.com>
- *
  * @property integer $id
  * @property string $email
  * @property integer $phone
  * @property integer $created_at
  * @property integer $updated_at
+ *
+ * @author Vladimir Kuprienko <vldmr.kuprienko@gmail.com>
  */
 class Client extends ActiveRecord
 {
     const SCENARIO_EMAIL = 'email';
     const SCENARIO_PHONE = 'phone';
 
+
+    /**
+     * @inheritdoc
+     */
     public function behaviors()
     {
         return [
@@ -48,8 +59,9 @@ class Client extends ActiveRecord
             [['phone', 'created_at'], 'integer'],
             [['email'], 'string', 'max' => 256],
             [['email'], 'email'],
+            [['created_at'], 'safe'],
 
-            [['phone', 'created_at'], 'required', 'on' => self::SCENARIO_DEFAULT],
+            [['email', 'phone'], 'required', 'on' => self::SCENARIO_DEFAULT],
             [['email'], 'required', 'on' => self::SCENARIO_EMAIL],
             [['phone'], 'required', 'on' => self::SCENARIO_PHONE],
         ];
@@ -61,13 +73,18 @@ class Client extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'email' => 'Email',
-            'phone' => 'Phone',
-            'created_at' => 'Created At',
+            'id' => Yii::t('email.templates', 'ID'),
+            'email' => Yii::t('email.templates', 'Email'),
+            'phone' => Yii::t('email.templates', 'Phone'),
+            'created_at' => Yii::t('email.templates', 'Created At')
         ];
     }
 
+    /**
+     * Get all clients in CSV string
+     *
+     * @return string
+     */
     public static function getCsv()
     {
         $clients = self::find()->all();

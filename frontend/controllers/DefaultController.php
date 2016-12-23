@@ -1,61 +1,60 @@
 <?php
+/**
+ * @link https://github.com/black-lamp/yii2-newsletter
+ * @copyright Copyright (c) Vladimir Kuprienko
+ * @license BSD 3-Clause License
+ */
+
 namespace bl\newsletter\frontend\controllers;
 
-use yii;
+use Yii;
 use yii\web\Controller;
 use yii\web\Response;
-use yii\base\Exception;
 use yii\web\NotFoundHttpException;
 
-use bl\newsletter\frontend\Newsletter;
-use bl\newsletter\common\entities\Client;
+use bl\newsletter\frontend\Module as Newsletter;
+use bl\newsletter\common\helpers\ResultMessage;
 
 /**
- * Default controller for the `newsletter` module
+ * Default controller for the frontend module
  *
  * @author Vladimir Kuprienko <vldmr.kuprienko@gmail.com>
  */
 class DefaultController extends Controller
 {
     /**
+     * @var Newsletter
+     */
+    public $module;
+    /**
+     * @inheritdoc
+     */
+    public $defaultAction = 'subscribe';
+
+
+    /**
      * Subscribe on newsletter by email
      *
      * @return string|Response
      * @throws NotFoundHttpException
      */
-    public function actionSubscribeEmail()
+    public function actionSubscribe()
     {
         if(Yii::$app->request->isPost) {
-            $client = new Client(['scenario' => Client::SCENARIO_EMAIL]);
+            /** @var \bl\newsletter\common\entities\Client $client */
+            $client = $this->module->clientManager->buildClient();
             $client->load(Yii::$app->request->post());
-
-            $result_message = Newsletter::t('frontend', 'Error!');
-            if($client->validate() && $client->save()) {
-                $result_message = Newsletter::t('frontend', 'Success!');
-            }
+            $resultMessage = ResultMessage::get($client->insert());
 
             if(Yii::$app->request->isAjax) {
-                return $result_message;
+                return $resultMessage;
             }
 
-            Yii::$app->session->setFlash('newsletter', $result_message);
+            Yii::$app->session->setFlash('newsletter', $resultMessage);
+
             return $this->redirect(Yii::$app->request->referrer);
         }
 
-        $error_mesage = Newsletter::t('error', 'Page not found!');
-        throw new NotFoundHttpException($error_mesage);
-    }
-
-    public function actionSubscribePhone()
-    {
-        // TODO: action for subscribe by phone number
-        throw new Exception("Not implement method");
-    }
-
-    public function actionSubscribe()
-    {
-        // TODO: action for subscribe by email and phone number
-        throw new Exception("Not implement method");
-
+        throw new NotFoundHttpException(Newsletter::t('error', 'Page not found!'));
     }
 }

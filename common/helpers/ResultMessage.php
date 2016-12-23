@@ -8,11 +8,11 @@
 namespace bl\newsletter\common\helpers;
 
 /**
- * CSV provides a set of static methods for work with CSV data format
+ * ResultMessage provides a set of static methods for getting a result message from methods
  *
  * @author Vladimir Kuprienko <vldmr.kuprienko@gmail.com>
  */
-class CSV extends BaseCSV
+class ResultMessage extends BaseResultMessage
 {
 
 }

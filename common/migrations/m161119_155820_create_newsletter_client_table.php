@@ -1,4 +1,10 @@
 <?php
+/**
+ * @link https://github.com/black-lamp/yii2-newsletter
+ * @copyright Copyright (c) Vladimir Kuprienko
+ * @license BSD 3-Clause License
+ */
+
 use yii\db\Migration;
 
 /**

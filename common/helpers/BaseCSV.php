@@ -1,12 +1,18 @@
 <?php
+/**
+ * @link https://github.com/black-lamp/yii2-newsletter
+ * @copyright Copyright (c) Vladimir Kuprienko
+ * @license BSD 3-Clause License
+ */
+
 namespace bl\newsletter\common\helpers;
 
-use yii;
+use Yii;
 use yii\db\ActiveRecord;
 
 /**
- * BaseCSV provides concrete implementation for [[CSV]].
- * Do not use BaseCSV. Use [[CSV]] instead.
+ * BaseCSV provides concrete implementation for CSV.
+ * Do not use BaseCSV. Use CSV instead.
  *
  * @author Vladimir Kuprienko <vldmr.kuprienko@gmail.com>
  */

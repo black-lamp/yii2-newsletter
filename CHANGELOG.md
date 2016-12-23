@@ -1,6 +1,14 @@
 black-lamp/yii2-newsletter commits history
 ------------------------------------------
 
+## [Under development]
+
+### Added
+- (#2)Added support of phone, email and phone types of subscribe
+
+### Changed
+- (#6)Refactored code
+
 ## [2.0.2] - 2016-11-29
 
 - (#4)Replaced route from view to widget.

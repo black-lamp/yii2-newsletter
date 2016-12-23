@@ -3,7 +3,7 @@
     "description": "Module for subscribe on newsletter",
     "keywords": ["yii2", "subscribe", "newsletter", "delivery"],
     "type": "yii2-extension",
-    "license": "GNU Public License",
+    "license": "BSD 3-Clause License",
     "support": {
         "source": "https://github.com/black-lamp/yii2-newsletter",
         "issues": "https://github.com/black-lamp/yii2-newsletter/issues"

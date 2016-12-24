@@ -5,6 +5,9 @@ black-lamp/yii2-newsletter commits history
 
 ### Added
 - (#2)Added support of phone, email and phone types of subscribe
+- (#3)Added new option to backend module
+- (#7)Added 'Clear list' button to list in backend module
+- Added data provider to backend module
 
 ### Changed
 - (#6)Refactored code

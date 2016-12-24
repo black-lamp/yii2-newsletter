@@ -10,6 +10,7 @@ namespace bl\newsletter\common\components;
 use yii\base\Exception;
 use yii\base\Object;
 
+use bl\newsletter\common\helpers\CSV;
 use bl\newsletter\common\entities\Client;
 
 /**
@@ -54,5 +55,16 @@ class ClientManager extends Object
         }
 
         return new Client(['scenario' => $scenario]);
+    }
+
+    /**
+     * Get all clients in CSV string
+     *
+     * @return string
+     */
+    public function getCsv()
+    {
+        $clients = Client::find()->all();
+        return CSV::getStringFromARObjects($clients, 'email', 'phone');
     }
 }

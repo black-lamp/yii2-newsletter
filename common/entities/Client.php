@@ -79,15 +79,4 @@ class Client extends ActiveRecord
             'created_at' => Yii::t('email.templates', 'Created At')
         ];
     }
-
-    /**
-     * Get all clients in CSV string
-     *
-     * @return string
-     */
-    public static function getCsv()
-    {
-        $clients = self::find()->all();
-        return CSV::getStringFromARObjects($clients, 'email', 'phone');
-    }
 }

@@ -1,19 +1,20 @@
 <?php
+use yii\grid\GridView;
 use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\bootstrap\BootstrapAsset;
-use yii\data\Pagination;
-use yii\widgets\LinkPager;
 
-use bl\newsletter\common\entities\Client;
-use bl\newsletter\backend\Newsletter;
+use bl\newsletter\backend\Module as Newsletter;
 
 /**
- * @author Vladimir Kuprienko <vldmr.kuprienko@gmail.com>
- *
  * @var \yii\web\View $this
- * @var Client[] $clients
- * @var Pagination $pages
+ * @var \yii\data\ActiveDataProvider $provider
+ * @var boolean $enableCsv
+ *
+ * @link https://github.com/black-lamp/yii2-newsletter
+ * @copyright Copyright (c) Vladimir Kuprienko
+ * @license BSD 3-Clause License
+ * @author Vladimir Kuprienko <vldmr.kuprienko@gmail.com>
  */
 
 BootstrapAsset::register($this);
@@ -23,60 +24,48 @@ BootstrapAsset::register($this);
     <div class="col-md-12">
         <h1>
             <?= Newsletter::t('backend', 'List of subscribed clients') ?>
-            <?= Html::a(Newsletter::t('backend', 'Download CSV'), Url::toRoute('download-csv'), [
+            <?php if ($enableCsv): ?>
+                <?= Html::a(Newsletter::t('backend', 'Download CSV'), Url::toRoute('download-csv'), [
                     'class' => 'btn btn-sm btn-success pull-right'
                 ]) ?>
+            <?php endif; ?>
         </h1>
     </div>
     <div class="col-md-12">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th># (id)</th>
-                    <th>
-                        <?= Newsletter::t('backend', 'E-mail') ?>
-                    </th>
-                    <th>
-                        <?= Newsletter::t('backend', 'Phone') ?>
-                    </th>
-                    <th>
-                        <?= Newsletter::t('backend', 'Subscribe date') ?>
-                    </th>
-                    <th>
-                        <?= Newsletter::t('backend', 'Remove') ?>
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach($clients as $client): ?>
-                    <tr>
-                        <td>
-                            <?= $client->id ?>
-                        </td>
-                        <td>
-                            <?= (!empty($client->email)) ? $client->email : '-' ?>
-                        </td>
-                        <td>
-                            <?= (!empty($client->phone)) ? $client->phone : '-' ?>
-                        </td>
-                        <td>
-                            <?= Yii::$app->formatter->asDatetime($client->created_at) ?>
-                        </td>
-                        <td>
-                            <?php
-                            $icon = Html::tag('span', '', ['class' => 'glyphicon glyphicon-remove']);
-                            $url = Url::toRoute(['delete', 'id' => $client->id]);
-                            echo Html::a($icon, $url, ['class' => 'text-danger']);
-                            ?>
-                        </td>
-                    </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
-        <div class="text-center">
-            <?= LinkPager::widget([
-                'pagination' => $pages
-            ]) ?>
-        </div>
+        <?= GridView::widget([
+            'dataProvider' => $provider,
+            'columns' => [
+                ['class' => yii\grid\SerialColumn::className()],
+                [
+                    'attribute' => 'email',
+                    'label' => Newsletter::t('backend', 'E-mail')
+                ],
+                [
+                    'attribute' => 'phone',
+                    'label' => Newsletter::t('backend', 'Phone')
+                ],
+                [
+                    'attribute' => 'created_at',
+                    'label' => Newsletter::t('backend', 'Subscribe date'),
+                    'format' => 'datetime'
+                ],
+                [
+                    'class' => yii\grid\ActionColumn::className(),
+                    'template' => '{delete}',
+                    'buttons' => [
+                        'delete' => function ($url) {
+                            return Html::a(Newsletter::t('backend', 'Remove'), $url, [
+                                    'class' => 'btn btn-sm btn-danger'
+                                ]);
+                        }
+                    ]
+                ]
+            ]
+        ]) ?>
+        <?= Html::a(
+                Newsletter::t('backend', 'Remove all'),
+                Url::toRoute(['clear']),
+                ['class' => 'btn btn-danger pull-right']
+            ) ?>
     </div>
 </div>

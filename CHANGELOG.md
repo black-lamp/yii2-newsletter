@@ -10,6 +10,7 @@ black-lamp/yii2-newsletter commits history
 - Added data provider to backend module
 
 ### Changed
+- Changed project file structure
 - (#6)Refactored code
 
 ## [2.0.2] - 2016-11-29

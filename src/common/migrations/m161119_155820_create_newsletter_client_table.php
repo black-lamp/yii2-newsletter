@@ -15,14 +15,20 @@ use yii\db\Migration;
 class m161119_155820_create_newsletter_client_table extends Migration
 {
     /**
+     * @var string
+     */
+    public $tableName = 'newsletter_client';
+
+
+    /**
      * @inheritdoc
      */
     public function up()
     {
-        $this->createTable('newsletter_client', [
-            'id' => $this->primaryKey(),
-            'email' => $this->string(256),
-            'phone' => $this->integer(),
+        $this->createTable($this->tableName, [
+            'id'         => $this->primaryKey(),
+            'email'      => $this->string(256),
+            'phone'      => $this->integer(),
             'created_at' => $this->integer(),
             'updated_at' => $this->integer()
         ]);
@@ -33,6 +39,6 @@ class m161119_155820_create_newsletter_client_table extends Migration
      */
     public function down()
     {
-        $this->dropTable('newsletter_client');
+        $this->dropTable($this->tableName);
     }
 }

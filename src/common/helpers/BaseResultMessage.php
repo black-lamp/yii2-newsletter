@@ -10,8 +10,8 @@ namespace bl\newsletter\common\helpers;
 use bl\newsletter\frontend\Module as Newsletter;
 
 /**
- * BaseResultMessage provides concrete implementation for ResultMessage.
- * Do not use BaseResultMessage. Use ResultMessage instead.
+ * [[BaseResultMessage]] provides concrete implementation for [[ResultMessage]].
+ * Do not use [[BaseResultMessage]]. Use [[ResultMessage]] instead.
  *
  * @author Vladimir Kuprienko <vldmr.kuprienko@gmail.com>
  */

@@ -37,7 +37,7 @@ class Client extends ActiveRecord
     {
         return [
             'timestamp' => [
-                'class' => TimestampBehavior::className()
+                'class' => TimestampBehavior::class
             ]
         ];
     }
@@ -47,7 +47,7 @@ class Client extends ActiveRecord
      */
     public static function tableName()
     {
-        return 'newsletter_client';
+        return '{{%newsletter_client}}';
     }
 
     /**
@@ -73,10 +73,10 @@ class Client extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('email.templates', 'ID'),
-            'email' => Yii::t('email.templates', 'Email'),
-            'phone' => Yii::t('email.templates', 'Phone'),
-            'created_at' => Yii::t('email.templates', 'Created At')
+            'id'         => Yii::t('email.templates', 'ID'),
+            'email'      => Yii::t('email.templates', 'Email'),
+            'phone'      => Yii::t('email.templates', 'Phone'),
+            'created_at' => Yii::t('email.templates', 'Created at')
         ];
     }
 }

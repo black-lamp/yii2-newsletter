@@ -11,8 +11,8 @@ use Yii;
 use yii\db\ActiveRecord;
 
 /**
- * BaseCSV provides concrete implementation for CSV.
- * Do not use BaseCSV. Use CSV instead.
+ * [[BaseCSV]] provides concrete implementation for [[CSV]].
+ * Do not use [[BaseCSV]]. Use [[CSV]] instead.
  *
  * @author Vladimir Kuprienko <vldmr.kuprienko@gmail.com>
  */
@@ -32,9 +32,9 @@ class BaseCSV
         foreach($arrays as $array) {
             $string .= implode(",", $array);
 
-            $last_char = strlen($string) - 1;
-            if($string{$last_char} == ",") {
-                $string{$last_char} = "\n";
+            $lastChar = strlen($string) - 1;
+            if($string[$lastChar] == ",") {
+                $string[$lastChar] = "\n";
             }
             else {
                 $string .= "\n";
@@ -48,19 +48,19 @@ class BaseCSV
      * Method for getting string in CSV format from array
      * of ActiveRecord objects
      *
-     * @param ActiveRecord[] $ar_objects
+     * @param ActiveRecord[] $arObjects
      * @param mixed [$field1, $field2 ...] Names of ActiveRecord fields
      * @return string in CSV format
      * @see ActiveRecord
      * @see BaseCSV::getStringFromArrays()
      */
-    public static function getStringFromARObjects($ar_objects)
+    public static function getStringFromARObjects($arObjects)
     {
         $fields = func_get_args();
         unset($fields[0]);
 
         $array = null;
-        foreach ($ar_objects as $key => $object) {
+        foreach ($arObjects as $key => $object) {
             $row = [];
             foreach ($fields as $field) {
                 $row[] = $object->{$field};
@@ -75,12 +75,13 @@ class BaseCSV
     /**
      * Method for downloading the CSV file from CSV string
      *
-     * @param string $csv_string String in CSV format
-     * @param string $file_name Name of download file
+     * @param string $csvString String in CSV format
+     * @param string $fileName Name of download file
      */
-    public static function download($csv_string, $file_name)
+    public static function download($csvString, $fileName)
     {
-        Yii::$app->response->sendContentAsFile($csv_string, $file_name, [
+        Yii::$app->get('response')
+            ->sendContentAsFile($csvString, $fileName, [
             'momeType' => 'text/csv',
             'inline' => true
         ]);

@@ -8,10 +8,12 @@
 namespace bl\newsletter\common\components;
 
 use yii\base\Exception;
+use yii\base\InvalidValueException;
 use yii\base\Object;
 
 use bl\newsletter\common\helpers\CSV;
 use bl\newsletter\common\entities\Client;
+use bl\newsletter\common\exceptions\WrongValueException;
 
 /**
  * Manager for Client model
@@ -39,8 +41,8 @@ class ClientManager extends Object
      */
     public function buildClient()
     {
-        if($this->type != self::TYPE_EMAIL && $this->type != self::TYPE_PHONE && $this->type != self::TYPE_MIXED) {
-            throw new Exception('$type can take the value - \'email\', \'phone\' or \'mixed\'');
+        if($this->type != self::TYPE_EMAIL || $this->type != self::TYPE_PHONE || $this->type != self::TYPE_MIXED) {
+            throw new WrongValueException('$type can take the values: \'email\', \'phone\' or \'mixed\'');
         }
 
         $scenario = Client::SCENARIO_DEFAULT;

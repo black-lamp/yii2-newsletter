@@ -2,6 +2,7 @@ Newsletter module for Yii2
 ==========================
 Module for subscribe on newsletter by e-mail or phone number
 
+[![Build Status](https://travis-ci.org/black-lamp/yii2-newsletter.svg?branch=master)](https://travis-ci.org/black-lamp/yii2-newsletter)
 [![Latest Stable Version](https://poser.pugx.org/black-lamp/yii2-newsletter/v/stable)](https://packagist.org/packages/black-lamp/yii2-newsletter)
 [![Latest Unstable Version](https://poser.pugx.org/black-lamp/yii2-newsletter/v/unstable)](https://packagist.org/packages/black-lamp/yii2-newsletter)
 [![License](https://poser.pugx.org/black-lamp/yii2-newsletter/license)](https://packagist.org/packages/black-lamp/yii2-newsletter)

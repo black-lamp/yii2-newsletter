@@ -1,0 +1,9 @@
+# Codeception
+codecept.phar
+
+# Composer files
+composer.phar
+composer.lock
+
+# Composer vendor dir
+/vendor

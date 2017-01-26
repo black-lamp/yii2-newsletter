@@ -9,6 +9,8 @@ use yii\helpers\Html;
 use yii\bootstrap\BootstrapAsset;
 use yii\bootstrap\ActiveForm;
 
+use bl\newsletter\frontend\Module as NewsletterModule;
+
 /**
  * View file for Subscribe widget
  *
@@ -32,5 +34,8 @@ $form = ActiveForm::begin([
     <?= $form->field($model, 'email')
             ->textInput()
             ->label(false) ?>
-    <?= Html::submitButton('Subscribe', ['class' => 'btn btn-success']) ?>
+    <?= Html::submitButton(
+        NewsletterModule::t('', 'Subscribe'),
+        ['class' => 'btn btn-success']
+    ) ?>
 <?php $form->end() ?>

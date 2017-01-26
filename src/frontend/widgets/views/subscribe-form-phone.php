@@ -8,6 +8,8 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
+use bl\newsletter\frontend\Module as NewsletterModule;
+
 /**
  * View file for Subscribe widget
  *
@@ -29,5 +31,8 @@ $form = ActiveForm::begin([
     <?= $form->field($model, 'phone')
         ->textInput()
         ->label(false) ?>
-    <?= Html::submitButton('Subscribe', ['class' => 'btn btn-success']) ?>
+    <?= Html::submitButton(
+        NewsletterModule::t('', 'Subscribe'),
+        ['class' => 'btn btn-success']
+    ) ?>
 <?php $form->end() ?>

@@ -26,10 +26,10 @@ BootstrapAsset::register($this);
 <div class="row">
     <div class="col-md-12">
         <h1>
-            <?= Newsletter::t('backend', 'List of subscribed clients') ?>
+            <?= Newsletter::t('list', 'List of subscribed clients') ?>
             <?php if ($enableCsv): ?>
                 <?= Html::a(
-                        Newsletter::t('backend', 'Download CSV'),
+                        Newsletter::t('list', 'Download CSV'),
                         Url::toRoute(['download-csv']),
                         ['class' => 'btn btn-sm btn-success pull-right']
                 ) ?>
@@ -43,15 +43,15 @@ BootstrapAsset::register($this);
                 ['class' => yii\grid\SerialColumn::className()],
                 [
                     'attribute' => 'email',
-                    'label' => Newsletter::t('backend', 'E-mail')
+                    'label' => Newsletter::t('list', 'E-mail')
                 ],
                 [
                     'attribute' => 'phone',
-                    'label' => Newsletter::t('backend', 'Phone')
+                    'label' => Newsletter::t('list', 'Phone')
                 ],
                 [
                     'attribute' => 'created_at',
-                    'label' => Newsletter::t('backend', 'Subscribe date'),
+                    'label' => Newsletter::t('list', 'Subscribe date'),
                     'format' => 'datetime'
                 ],
                 [
@@ -60,7 +60,7 @@ BootstrapAsset::register($this);
                     'buttons' => [
                         'delete' => function ($url) {
                             return Html::a(
-                                    Newsletter::t('backend', 'Remove'), $url, [
+                                    Newsletter::t('list', 'Remove'), $url, [
                                     'class' => 'btn btn-sm btn-danger'
                                 ]);
                         }
@@ -69,7 +69,7 @@ BootstrapAsset::register($this);
             ]
         ]) ?>
         <?= Html::a(
-                Newsletter::t('backend', 'Remove all'),
+                Newsletter::t('list', 'Remove all'),
                 Url::toRoute(['clear']),
                 ['class' => 'btn btn-danger pull-right']
             ) ?>

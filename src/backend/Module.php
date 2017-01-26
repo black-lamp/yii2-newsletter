@@ -53,6 +53,6 @@ class Module extends NewsletterModule
      */
     public static function t($category, $message, $params = [], $language = null)
     {
-        return Yii::t('newsletter.backend' . $category, $message, $params, $language);
+        return Yii::t('newsletter.backend.' . $category, $message, $params, $language);
     }
 }

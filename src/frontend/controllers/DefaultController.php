@@ -8,6 +8,7 @@
 namespace bl\newsletter\frontend\controllers;
 
 use Yii;
+use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\Response;
 use yii\web\NotFoundHttpException;
@@ -33,28 +34,39 @@ class DefaultController extends Controller
 
 
     /**
+     * @inheritdoc
+     */
+    public function behaviors()
+    {
+        return [
+            'verbs' => [
+                'class' => VerbFilter::class,
+                'actions' => [
+                    'subscribe' => ['post']
+                ]
+            ]
+        ];
+    }
+
+    /**
      * Subscribe on newsletter by email
      *
      * @return string|Response
-     * @throws NotFoundHttpException
      */
     public function actionSubscribe()
     {
-        if(Yii::$app->request->isPost) {
-            /** @var \bl\newsletter\common\entities\Client $client */
-            $client = $this->module->clientManager->buildClient();
-            $client->load(Yii::$app->request->post());
-            $resultMessage = ResultMessage::get($client->insert());
+        /** @var \bl\newsletter\common\entities\Client $client */
+        $client = $this->module->getClientManager()->buildClient();
+        $client->load(Yii::$app->request->post());
+        $resultMessage = ResultMessage::get($client->insert());
 
-            if(Yii::$app->request->isAjax) {
-                return $resultMessage;
-            }
-
-            Yii::$app->session->setFlash('newsletter', $resultMessage);
-
-            return $this->redirect(Yii::$app->request->referrer);
+        if(Yii::$app->request->isAjax) {
+            return $resultMessage;
         }
 
-        throw new NotFoundHttpException(Newsletter::t('error', 'Page not found!'));
+        Yii::$app->get('session')
+            ->setFlash($this->module->flashMessageKey, $resultMessage);
+
+        return $this->redirect(Yii::$app->request->referrer);
     }
 }

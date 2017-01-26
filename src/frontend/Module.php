@@ -16,11 +16,15 @@ use bl\newsletter\common\components\ClientManager;
  *
  * @property string $type
  * @property ClientManager $clientManager
+ * @property string $flashMessageKey
  *
  * @author Vladimir Kuprienko <vldmr.kuprienko@gmail.com>
  */
 class Module extends \yii\base\Module
 {
+    const CLIENT_MANAGER_COMPONENT_ID = 'clientManager';
+
+
     /**
      * @inheritdoc
      */
@@ -30,6 +34,10 @@ class Module extends \yii\base\Module
      * Can take the value - 'email', 'phone' or 'mixed'
      */
     public $type = 'email';
+    /**
+     * @var string Key for flash message in session
+     */
+    public $flashMessageKey = 'newsletter';
 
 
     /**
@@ -39,12 +47,22 @@ class Module extends \yii\base\Module
     {
         parent::init();
 
-        $this->components = [
-            'clientManager' => [
-                'class' => ClientManager::className(),
+        if (!$this->has(self::CLIENT_MANAGER_COMPONENT_ID)) {
+            $this->set(self::CLIENT_MANAGER_COMPONENT_ID, [
+                'class' => ClientManager::class,
                 'type' => $this->type
-            ]
-        ];
+            ]);
+        }
+    }
+
+    /**
+     * Get [[ClientManager]] component
+     *
+     * @return ClientManager
+     */
+    public function getClientManager()
+    {
+        return $this->get(self::CLIENT_MANAGER_COMPONENT_ID);
     }
 
     /**
@@ -58,6 +76,6 @@ class Module extends \yii\base\Module
      */
     public static function t($category, $message, $params = [], $language = null)
     {
-        return Yii::t('newsletter.' . $category, $message, $params, $language);
+        return Yii::t('newsletter.frontend' . $category, $message, $params, $language);
     }
 }

@@ -9,6 +9,7 @@ namespace bl\newsletter\backend;
 
 use Yii;
 
+use bl\newsletter\common\base\NewsletterModule;
 use bl\newsletter\common\components\ClientManager;
 
 /**
@@ -20,7 +21,7 @@ use bl\newsletter\common\components\ClientManager;
  *
  * @author Vladimir Kuprienko <vldmr.kuprienko@gmail.com>
  */
-class Module extends \yii\base\Module
+class Module extends NewsletterModule
 {
     /**
      * @inheritdoc
@@ -31,24 +32,10 @@ class Module extends \yii\base\Module
      */
     public $enableCsv = true;
     /**
-     * @var array configuration for data provider
+     * @var array Configuration for data provider
      */
     public $dataProvider = [];
 
-
-    /**
-     * @inheritdoc
-     */
-    public function init()
-    {
-        parent::init();
-
-        $this->components = [
-            'clientManager' => [
-                'class' => ClientManager::className()
-            ]
-        ];
-    }
 
     /**
      * Wrapper for default method `Yii::t()`
@@ -61,6 +48,6 @@ class Module extends \yii\base\Module
      */
     public static function t($category, $message, $params = [], $language = null)
     {
-        return Yii::t('newsletter.' . $category, $message, $params, $language);
+        return Yii::t('newsletter.backend' . $category, $message, $params, $language);
     }
 }

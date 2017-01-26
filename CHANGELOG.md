@@ -9,6 +9,7 @@ black-lamp/yii2-newsletter commits history
 - (#7)Added 'Clear list' button to list in backend module
 - Added data provider to backend module
 - Added `bl\newsletter\common\exceptions\WrongValueException` exception class
+- Added `bl\newsletter\common\base\NewsletterModule` base module for frontend and backend modules
 
 ### Changed
 - Changed project file structure

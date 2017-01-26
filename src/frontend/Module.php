@@ -9,6 +9,7 @@ namespace bl\newsletter\frontend;
 
 use Yii;
 
+use bl\newsletter\common\base\NewsletterModule;
 use bl\newsletter\common\components\ClientManager;
 
 /**
@@ -16,15 +17,12 @@ use bl\newsletter\common\components\ClientManager;
  *
  * @property string $type
  * @property ClientManager $clientManager
- * @property string $flashMessageKey
+ * @property string
  *
  * @author Vladimir Kuprienko <vldmr.kuprienko@gmail.com>
  */
-class Module extends \yii\base\Module
+class Module extends NewsletterModule
 {
-    const CLIENT_MANAGER_COMPONENT_ID = 'clientManager';
-
-
     /**
      * @inheritdoc
      */
@@ -45,24 +43,14 @@ class Module extends \yii\base\Module
      */
     public function init()
     {
-        parent::init();
-
         if (!$this->has(self::CLIENT_MANAGER_COMPONENT_ID)) {
             $this->set(self::CLIENT_MANAGER_COMPONENT_ID, [
                 'class' => ClientManager::class,
                 'type' => $this->type
             ]);
         }
-    }
 
-    /**
-     * Get [[ClientManager]] component
-     *
-     * @return ClientManager
-     */
-    public function getClientManager()
-    {
-        return $this->get(self::CLIENT_MANAGER_COMPONENT_ID);
+        parent::init();
     }
 
     /**

@@ -16,6 +16,7 @@ use bl\newsletter\common\components\ClientManager;
  * Newsletter module definition class
  *
  * @property boolean $enableCsv
+ * @property string $fileName
  * @property array $dataProvider
  * @property ClientManager $clientManager
  *
@@ -31,6 +32,10 @@ class Module extends NewsletterModule
      * @var boolean
      */
     public $enableCsv = true;
+    /**
+     * @var string Name for CSV file
+     */
+    public $fileName = 'clients';
     /**
      * @var array Configuration for data provider
      */

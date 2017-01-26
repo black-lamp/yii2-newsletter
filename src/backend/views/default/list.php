@@ -1,4 +1,10 @@
 <?php
+/**
+ * @link https://github.com/black-lamp/yii2-newsletter
+ * @copyright Copyright (c) Vladimir Kuprienko
+ * @license BSD 3-Clause License
+ */
+
 use yii\grid\GridView;
 use yii\helpers\Url;
 use yii\helpers\Html;
@@ -11,9 +17,6 @@ use bl\newsletter\backend\Module as Newsletter;
  * @var \yii\data\ActiveDataProvider $provider
  * @var boolean $enableCsv
  *
- * @link https://github.com/black-lamp/yii2-newsletter
- * @copyright Copyright (c) Vladimir Kuprienko
- * @license BSD 3-Clause License
  * @author Vladimir Kuprienko <vldmr.kuprienko@gmail.com>
  */
 
@@ -25,9 +28,11 @@ BootstrapAsset::register($this);
         <h1>
             <?= Newsletter::t('backend', 'List of subscribed clients') ?>
             <?php if ($enableCsv): ?>
-                <?= Html::a(Newsletter::t('backend', 'Download CSV'), Url::toRoute('download-csv'), [
-                    'class' => 'btn btn-sm btn-success pull-right'
-                ]) ?>
+                <?= Html::a(
+                        Newsletter::t('backend', 'Download CSV'),
+                        Url::toRoute(['download-csv']),
+                        ['class' => 'btn btn-sm btn-success pull-right']
+                ) ?>
             <?php endif; ?>
         </h1>
     </div>
@@ -54,7 +59,8 @@ BootstrapAsset::register($this);
                     'template' => '{delete}',
                     'buttons' => [
                         'delete' => function ($url) {
-                            return Html::a(Newsletter::t('backend', 'Remove'), $url, [
+                            return Html::a(
+                                    Newsletter::t('backend', 'Remove'), $url, [
                                     'class' => 'btn btn-sm btn-danger'
                                 ]);
                         }

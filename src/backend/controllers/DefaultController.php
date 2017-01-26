@@ -12,6 +12,7 @@ use yii\base\Exception;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\Response;
+use yii\helpers\ArrayHelper;
 
 use bl\newsletter\backend\Module as Newsletter;
 use bl\newsletter\common\entities\Client;
@@ -25,13 +26,13 @@ use bl\newsletter\common\helpers\CSV;
 class DefaultController extends Controller
 {
     /**
-     * @inheritdoc
-     */
-    public $defaultAction = 'list';
-    /**
      * @var Newsletter
      */
     public $module;
+    /**
+     * @inheritdoc
+     */
+    public $defaultAction = 'list';
 
 
     /**
@@ -41,7 +42,10 @@ class DefaultController extends Controller
      */
     public function actionList()
     {
-        $providerConfig = array_merge($this->module->dataProvider, ['query' => Client::find()]);
+        $providerConfig = ArrayHelper::merge(
+            $this->module->dataProvider,
+            ['query' => Client::find()]
+        );
         $provider = new ActiveDataProvider($providerConfig);
 
         $viewParams = [
@@ -72,13 +76,14 @@ class DefaultController extends Controller
             return $this->actionList();
         }
 
-        return $this->redirect(Yii::$app->request->referrer);
+        return $this->redirect(Yii::$app->get('request')->referrer);
     }
 
     /**
      * Remove all clients from database
      *
      * @return string|Response
+     * @throws Exception
      */
     public function actionClear()
     {
@@ -92,13 +97,14 @@ class DefaultController extends Controller
         }
         catch (Exception $ex) {
             $transaction->rollBack();
+            throw new $ex;
         }
 
         if(Yii::$app->request->isAjax) {
             return $this->actionList();
         }
 
-        return $this->redirect(Yii::$app->request->referrer);
+        return $this->redirect(Yii::$app->get('request')->referrer);
     }
 
     /**
@@ -106,6 +112,9 @@ class DefaultController extends Controller
      */
     public function actionDownloadCsv()
     {
-        CSV::download($this->module->clientManager->getCsv(), 'clients.csv');
+        CSV::download(
+            $this->module->clientManager->getCsv(),
+            $this->module->fileName . '.csv'
+        );
     }
 }

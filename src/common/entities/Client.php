@@ -56,10 +56,10 @@ class Client extends ActiveRecord
     public function rules()
     {
         return [
-            [['phone', 'created_at'], 'integer'],
+            [['created_at', 'updated_at'], 'safe'],
+            [['phone'], 'integer'],
             [['email'], 'string', 'max' => 256],
             [['email'], 'email'],
-            [['created_at'], 'safe'],
 
             [['email', 'phone'], 'required', 'on' => self::SCENARIO_DEFAULT],
             [['email'], 'required', 'on' => self::SCENARIO_EMAIL],

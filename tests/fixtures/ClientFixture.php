@@ -20,4 +20,8 @@ class ClientFixture extends ActiveFixture
      * @inheritdoc
      */
     public $modelClass = 'bl\newsletter\common\entities\Client';
+    /**
+     * @inheritdoc
+     */
+    public $dataFile = '@data/clients.php';
 }

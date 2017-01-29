@@ -18,13 +18,15 @@ use bl\newsletter\common\exceptions\WrongValueException;
 /**
  * Manager for Client model
  *
+ * @property string $type
+ *
  * @author Vladimir Kuprienko <vldmr.kuprienko@gmail.com>
  */
 class ClientManager extends Object
 {
     const TYPE_EMAIL = 'email';
     const TYPE_PHONE = 'phone';
-    const TYPE_MIXED = 'mixed';
+    const TYPE_MIXED = 'default';
 
 
     /**
@@ -41,8 +43,10 @@ class ClientManager extends Object
      */
     public function buildClient()
     {
-        if($this->type != self::TYPE_EMAIL || $this->type != self::TYPE_PHONE || $this->type != self::TYPE_MIXED) {
-            throw new WrongValueException('$type can take the values: \'email\', \'phone\' or \'mixed\'');
+        if($this->type !== self::TYPE_EMAIL &&
+            $this->type !== self::TYPE_PHONE &&
+            $this->type !== self::TYPE_MIXED) {
+            throw new WrongValueException('$type can take the value: \'email\', \'phone\' or \'mixed\'');
         }
 
         $scenario = Client::SCENARIO_DEFAULT;

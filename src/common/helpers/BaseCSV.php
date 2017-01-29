@@ -45,34 +45,6 @@ class BaseCSV
     }
 
     /**
-     * Method for getting string in CSV format from array
-     * of ActiveRecord objects
-     *
-     * @param ActiveRecord[] $arObjects
-     * @param mixed [$field1, $field2 ...] Names of ActiveRecord fields
-     * @return string in CSV format
-     * @see ActiveRecord
-     * @see BaseCSV::getStringFromArrays()
-     */
-    public static function getStringFromARObjects($arObjects)
-    {
-        $fields = func_get_args();
-        unset($fields[0]);
-
-        $array = null;
-        foreach ($arObjects as $key => $object) {
-            $row = [];
-            foreach ($fields as $field) {
-                $row[] = $object->{$field};
-            }
-
-            $array[$key] = $row;
-        }
-
-        return self::getStringFromArrays($array);
-    }
-
-    /**
      * Method for downloading the CSV file from CSV string
      *
      * @param string $csvString String in CSV format

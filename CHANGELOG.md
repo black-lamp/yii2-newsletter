@@ -15,6 +15,9 @@ black-lamp/yii2-newsletter commits history
 - Changed project file structure
 - (#6)Refactored code
 
+### Removed
+- Removed `bl\newsletter\common\helpers\BaseCSV::getStringFromARObjects()` method
+
 ## [2.0.2] - 2016-11-29
 
 - (#4)Replaced route from view to widget.

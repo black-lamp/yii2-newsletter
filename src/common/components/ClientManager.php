@@ -70,7 +70,11 @@ class ClientManager extends Object
      */
     public function getCsv()
     {
-        $clients = Client::find()->all();
-        return CSV::getStringFromARObjects($clients, 'email', 'phone');
+        $clients = Client::find()
+            ->select(['email', 'phone'])
+            ->asArray()
+            ->all();
+
+        return CSV::getStringFromArrays($clients);
     }
 }

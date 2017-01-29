@@ -7,8 +7,7 @@
 
 namespace tests\unit\helpers;
 
-use tests\unit\DbTestCase;
-use tests\fixtures\ClientFixture;
+use tests\unit\TestCase;
 
 use bl\newsletter\common\helpers\CSV;
 use bl\newsletter\common\entities\Client;
@@ -18,22 +17,8 @@ use bl\newsletter\common\entities\Client;
  *
  * @author Vladimir Kuprienko <vldmr.kuprienko@gmail.com>
  */
-class CsvTest extends DbTestCase
+class CsvTest extends TestCase
 {
-
-    public function fixtures()
-    {
-        return [
-            'client' => [
-                'class' => ClientFixture::class
-            ]
-        ];
-    }
-
-    public function _before()
-    {
-    }
-
     public function testGetStringFromArrays()
     {
         $arrays = [
